@@ -5,17 +5,18 @@ import { HeaderContainer } from "./header/HeaderContainer";
 export const Layout = () => {
   return (
     <div>
-      <div>
-        {/* navbar */}
-        <HeaderContainer style={{height:"60px"}}></HeaderContainer>
+      <div style={{ height: "90px" }}>
+        <HeaderContainer />
       </div>
-      <div style={{minHeight:"calc(100vh - 260px )"}}>
-        {/* Hijos */}
+      <div
+        style={{
+          minHeight: "calc(100vh - 290px )",
+        }}
+      >
         <Outlet />
       </div>
-      <div>
-        {/* Footer */}
-        <FooterContainer style={{height:"200px"}}></FooterContainer>
+      <div style={{ height: "200px" }}>
+        <FooterContainer />
       </div>
     </div>
   );

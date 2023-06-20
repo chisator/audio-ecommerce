@@ -1,0 +1,10 @@
+a, svg , path, img{
+    transition: all 400ms;
+    cursor: pointer;
+}
+a:hover, svg:hover path{
+    color:#d87d4a;
+}
+img:hover{
+ transform: scale(0.9);
+}
