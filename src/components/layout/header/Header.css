@@ -5,6 +5,20 @@ a, svg , path, img{
 a:hover, svg:hover path{
     color:#d87d4a;
 }
-img:hover{
+img.logo:hover{
  transform: scale(0.9);
+}
+.white-line {
+  border: none;
+  width: 180px;
+  border-top: 3px solid white;
+  margin:30px 0 ;
+}
+.linkSign{
+    display: flex;
+    align-items: center;
+    
+}
+.MuiDrawer-paper{
+    background-color: #101010;
 }

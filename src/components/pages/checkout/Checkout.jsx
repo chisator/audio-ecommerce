@@ -1,6 +1,10 @@
+import { TarjetaContainer } from "../../common/tarjeta/TarjetaContainer";
 
 export const Checkout = () => {
   return (
-    <div>Checkout</div>
-  )
+    <div>
+      <TarjetaContainer />
+      Checkout
+    </div>
+  );
 }

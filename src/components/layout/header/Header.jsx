@@ -2,15 +2,9 @@ import {
   AppBar,
   Badge,
   Box,
-  Divider,
   Drawer,
   Grid,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Toolbar,
 } from "@mui/material";
 import img from "../../../assets/img/logo_qnvapf.svg";
@@ -19,6 +13,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { useState } from "react";
+import { menu } from "../../../routes/navigation";
 export const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   return (
@@ -55,47 +50,49 @@ export const Header = () => {
                 <MenuIcon />
               </IconButton>
               <Drawer
+                className="drawer"
                 open={openDrawer}
                 anchor="left"
                 onClose={() => setOpenDrawer(false)}
               >
-                <List>
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>HOME</ListItemIcon>
-                      <ListItemText  />
-                    </ListItemButton>
-                  </ListItem>
-                </List>
-                <Divider />
-                <List>
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>HEADPHONES</ListItemIcon>
-                      <ListItemText  />
-                    </ListItemButton>
-                  </ListItem>
-                </List>
-                <List>
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>SPEAKERS</ListItemIcon>
-                      <ListItemText  />
-                    </ListItemButton>
-                  </ListItem>
-                </List>
-                <List>
-                  <ListItem disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>EARPHONES</ListItemIcon>
-                      <ListItemText  />
-                    </ListItemButton>
-                  </ListItem>
-                </List>
+                <Box
+                  sx={{
+                    height: "100%",
+                    backgroundColor: "primary.main",
+                    padding: "40px",
+                  }}
+                >
+                  {menu.map((item) => {
+                    return (
+                      <Grid
+                        key={item.id}
+                        sx={{ marginBottom: "25px", ml: 4 }}
+                        item
+                        fontSize={15}
+                      >
+                        <Link to={item.path}>{item.title}</Link>
+                      </Grid>
+                    );
+                  })}
+
+                  <hr className="white-line"></hr>
+                  <Box sx={{ ml: 4 }}>
+                    <Link
+                      style={{ marginBottom: "20px" }}
+                      to="/register"
+                      className="linkSign"
+                    >
+                      Register
+                    </Link>
+                    <Link to="/login" className="linkSign">
+                      Log In
+                    </Link>
+                  </Box>
+                </Box>
               </Drawer>
-              <img src={img} alt="" />
+              <img src={img} className="logo" alt="" />
             </Box>
-            <Badge badgeContent={4} color="secondary">
+            <Badge badgeContent={1} color="secondary">
               <ShoppingCartOutlinedIcon />
             </Badge>
           </Box>
@@ -108,7 +105,7 @@ export const Header = () => {
               width: "100%",
             }}
           >
-            <img src={img} alt="" />
+            <img src={img} className="logo" alt="" />
             <Grid
               container
               style={{
@@ -119,20 +116,24 @@ export const Header = () => {
               }}
               color={"secondary"}
             >
-              <Grid item fontSize={13}>
-                <Link>HOME</Link>
-              </Grid>
-              <Grid item fontSize={13}>
-                <Link>HEADPHONES</Link>
-              </Grid>
-              <Grid item fontSize={13}>
-                <Link>SPEAKERS</Link>
-              </Grid>
-              <Grid item fontSize={13}>
-                <Link>EARPHONES</Link>
-              </Grid>
+              {menu.map((item) => {
+                return (
+                  <Grid key={item.id} item fontSize={13}>
+                    <Link to={item.path}>{item.title}</Link>
+                  </Grid>
+                );
+              })}
             </Grid>
-            <Badge badgeContent={4} color="secondary">
+            <Box sx={{ mr: 2 }} style={{ display: "flex", gap: "0.5rem" }}>
+              <Link to="/register" className="linkSign">
+                Register
+              </Link>
+              <hr style={{ height: "30px" }} />
+              <Link style={{ width: "45px" }} to="/login" className="linkSign">
+                Log In
+              </Link>
+            </Box>
+            <Badge badgeContent={1} color="secondary">
               <ShoppingCartOutlinedIcon />
             </Badge>
           </Box>

@@ -1,9 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box} from "@mui/material";
+import { TarjetaContainer } from "../../common/tarjeta/TarjetaContainer";
 
 export const Home = () => {
   return (
-    <Box color="primary">
-      <Typography color="primary">funciona el Home</Typography>
+    <Box >
+      <TarjetaContainer></TarjetaContainer>
     </Box>
   );
 };

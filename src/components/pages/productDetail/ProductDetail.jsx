@@ -1,7 +1,11 @@
+import { TarjetaContainer } from "../../common/tarjeta/TarjetaContainer"
 
 
 export const ProductDetail = () => {
   return (
-    <div>ProductDetail</div>
+    <div>
+      ProductDetail
+      <TarjetaContainer/>
+    </div>
   )
 }
