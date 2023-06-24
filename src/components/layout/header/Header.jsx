@@ -14,7 +14,8 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import { useState } from "react";
 import { menu } from "../../../routes/navigation";
-export const Header = () => {
+import { CustomModalContainer } from "../../common/customModal/CustomModalContainer";
+export const Header = ({ open, handleClose, handleOpen }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -93,7 +94,12 @@ export const Header = () => {
               <img src={img} className="logo" alt="" />
             </Box>
             <Badge badgeContent={1} color="secondary">
-              <ShoppingCartOutlinedIcon />
+              <ShoppingCartOutlinedIcon onClick={handleOpen} />
+            <CustomModalContainer
+              open={open}
+              handleClose={handleClose}
+              handleOpen={handleOpen}
+            />
             </Badge>
           </Box>
           <Box
@@ -134,8 +140,13 @@ export const Header = () => {
               </Link>
             </Box>
             <Badge badgeContent={1} color="secondary">
-              <ShoppingCartOutlinedIcon />
+              <ShoppingCartOutlinedIcon onClick={handleOpen} />
             </Badge>
+            <CustomModalContainer
+              open={open}
+              handleClose={handleClose}
+              handleOpen={handleOpen}
+            />
           </Box>
         </Toolbar>
       </AppBar>

@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { FooterContainer } from "./footer/FooterContainer";
 import { HeaderContainer } from "./header/HeaderContainer";
+import { Box } from "@mui/material";
 
 export const Layout = () => {
   return (
@@ -8,13 +9,14 @@ export const Layout = () => {
       <div style={{ height: "90px" }}>
         <HeaderContainer />
       </div>
-      <div
-        style={{
+      <Box
+        sx={{
+          backgroundColor:"primary.second",
           minHeight: "calc(100vh - 290px )",
         }}
       >
         <Outlet />
-      </div>
+      </Box>
       <div style={{ height: "200px" }}>
         <FooterContainer />
       </div>

@@ -5,6 +5,7 @@ export const customTheme = createTheme({
       main: "#101010",
       second: "#f1f1f1",
       negro: "#000000c2",
+      blanco:"#ffffff"
     },
     secondary: {
       main: "#D87D4A",
