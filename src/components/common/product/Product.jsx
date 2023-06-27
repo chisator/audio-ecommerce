@@ -2,30 +2,48 @@ import { Box, CardMedia} from "@mui/material";
 import { ProductDescriptionContainer } from "../productDescription/ProductDescriptionContainer";
 
 
-export const Product = ({ prod, i }) => {
+export const Product = ({ prod, i, onAdd, precio, posicion }) => {
   return (
     <Box
       sx={{
         display: "flex",
         maxWidth: 1100,
-        m: "40px auto",
+        m: "0 auto 100px",
         flexDirection: {
           xs: "column",
-          md: i % 2 === 0 ? "row" : "row-reverse",
+          md: i % 2 === 1 ? "row-reverse" : "row",
         },
       }}
     >
       <Box
         sx={{
-          p: 2,
-          borderRadius: 6,
-          maxWidth: { md: 1100, xs: 400 },
           m: "0 auto",
         }}
       >
-        <CardMedia component="img" image={prod.image} alt="producto" />
+        <CardMedia
+          sx={{
+            m: "auto",
+            borderRadius: 4,
+            width: { md: 530, sm: 500, xs: "94%" },
+          }}
+          component="img"
+          image={prod.image}
+          alt="producto"
+        />
       </Box>
-      <ProductDescriptionContainer prod={prod}/>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <ProductDescriptionContainer
+          prod={prod}
+          precio={precio}
+          onAdd={onAdd}
+          posicion={posicion}
+        />
+      </div>
     </Box>
   );
 };

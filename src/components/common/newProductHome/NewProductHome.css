@@ -1,5 +1,8 @@
-@media (min-width: 900px) {
+@media (max-width: 900px) {
   .newProductHome {
-    
+    background-image: url("https://res.cloudinary.com/dqxwowyg6/image/upload/v1687787062/Bitmap2_hiijgr.png");
+    background-size: cover;
+    background-position: center center;
+    background-color: black;
   }
 }

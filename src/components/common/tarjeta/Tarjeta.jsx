@@ -9,7 +9,7 @@ export const Tarjeta = () => {
         sx={{
           display: "flex",
           margin: "40px auto",
-          justifyContent: "space-around",
+          justifyContent: "center",
           flexDirection: {
             lg: "row",
             xs: "column-reverse",
@@ -18,14 +18,14 @@ export const Tarjeta = () => {
         }}
       >
         <Box
-          sx={{ width: { lg: "35%", sm: "90%", xs: "100%" } }}
+          sx={{ width: { lg: "560px", sm: "90%", xs: "100%" } }}
           className="texto-audio"
         >
           <Typography
             sx={{
               width: { lg: "455px", sm: 500, xs: "80%" },
-              margin: { xs: "auto" },
-              textAlign: { xs: "center" },
+              margin: { xs: "auto", lg: "0" },
+              textAlign: { xs: "center", lg: "start" },
             }}
             fontSize={{ sm: 40, xs: 28 }}
             color={"primary"}
@@ -37,8 +37,8 @@ export const Tarjeta = () => {
             fontSize={15}
             sx={{
               width: { lg: "455px", sm: 500, xs: "80%" },
-              margin: { xs: "auto" },
-              textAlign: { xs: "center" },
+              margin: { xs: "auto", lg: "0" },
+              textAlign: { xs: "center", lg: "start" },
             }}
             color={"primary.negro"}
           >
@@ -53,7 +53,7 @@ export const Tarjeta = () => {
         <Box
           sx={{
             width: { lg: 540, md: 689, xs: "80%" },
-            height: { lg: 580, sm: 300 },
+            height: { lg: 588, sm: 300 },
           }}
         >
           <CardMedia

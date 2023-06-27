@@ -11,7 +11,7 @@ export const Layout = () => {
       </div>
       <Box
         sx={{
-          backgroundColor:"primary.second",
+          backgroundColor:"white",
           minHeight: "calc(100vh - 290px )",
         }}
       >

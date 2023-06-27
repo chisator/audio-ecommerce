@@ -48,6 +48,7 @@ export const Login = ({
         <form className="form-login" action="" onSubmit={handleSubmit}>
           <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
             <TextField
+            autoComplete="username"
               placeholder="ejemplo@gmail.com"
               className=""
               id="standard-basic"
@@ -72,6 +73,7 @@ export const Login = ({
               Password
             </InputLabel>
             <OutlinedInput
+              autoComplete="current-password"
               name="password"
               color="secondary"
               placeholder="suContraseña"
