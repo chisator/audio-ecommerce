@@ -12,11 +12,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom";
 import "./Header.css";
-import { useState } from "react";
 import { menu } from "../../../routes/navigation";
 import { CustomModalContainer } from "../../common/customModal/CustomModalContainer";
-export const Header = ({ open, handleClose, handleOpen }) => {
-  const [openDrawer, setOpenDrawer] = useState(false);
+export const Header = ({
+  open,
+  handleClose,
+  handleOpen,
+  setOpenDrawer,
+  openDrawer,
+  cart,
+}) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -93,13 +98,13 @@ export const Header = ({ open, handleClose, handleOpen }) => {
               </Drawer>
               <img src={img} className="logo" alt="" />
             </Box>
-            <Badge badgeContent={1} color="secondary">
+            <Badge badgeContent={cart.length} color="secondary">
               <ShoppingCartOutlinedIcon onClick={handleOpen} />
-            <CustomModalContainer
-              open={open}
-              handleClose={handleClose}
-              handleOpen={handleOpen}
-            />
+              <CustomModalContainer
+                open={open}
+                handleClose={handleClose}
+                handleOpen={handleOpen}
+              />
             </Badge>
           </Box>
           <Box
@@ -139,7 +144,7 @@ export const Header = ({ open, handleClose, handleOpen }) => {
                 Log In
               </Link>
             </Box>
-            <Badge badgeContent={1} color="secondary">
+            <Badge badgeContent={cart.length} color="secondary">
               <ShoppingCartOutlinedIcon onClick={handleOpen} />
             </Badge>
             <CustomModalContainer

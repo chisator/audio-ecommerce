@@ -1,0 +1,37 @@
+.imageCategory {
+  position: absolute;
+  top: -60px;
+}
+.sombra {
+  position: absolute;
+  top: 80px;
+  width: 142px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: 122px;
+  background: #000;
+  filter: blur(21.746253967285156px);
+}
+@keyframes moveUpDown {
+  0% {
+    top: -60px;
+  }
+
+  100% {
+    top: -70px;
+  }
+}
+.container {
+  position: relative;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  margin: 40px auto 0;
+  border-radius: 10px;
+}
+.container:hover .imageCategory {
+  /* animation: moveUpDown 2s infinite alternate; */
+  transform: translateY(-10px)
+}

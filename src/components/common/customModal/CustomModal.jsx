@@ -1,21 +1,30 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
+import { Box, Button, IconButton, Modal, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { CounterContainer } from "../counter/CounterContainer";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { clearCart, removeById } from "../../../store/cartSlice";
 const style = {
   position: "absolute",
   top: "15%",
   right: "3%",
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  borderRadius: 3,
   boxShadow: 24,
-  p: 4,
+  p: 3,
   minHeight: "480px",
-  width: { xs: 320 },
+  width: { xs: 320, sm: 380 },
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
 };
-export const CustomModal = ({ open, handleClose }) => {
-  const products = false;
+export const CustomModal = ({
+  open,
+  handleClose,
+  cart,
+  onAdd,
+  dispatch,
+  totalPrecio,
+}) => {
   return (
     <div>
       <Modal
@@ -39,9 +48,10 @@ export const CustomModal = ({ open, handleClose }) => {
               variant="h6"
               component="h2"
             >
-              CART ( )
+              CART ({cart.length})
             </Typography>
             <Button
+              onClick={() => dispatch(clearCart())}
               sx={{
                 textTransform: "none",
               }}
@@ -54,31 +64,72 @@ export const CustomModal = ({ open, handleClose }) => {
               </Typography>
             </Button>
           </Box>
-          <Box>
-            {products ? (
-              products.map((prod) => {
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              maxHeight: 240,
+              overflow: "auto",
+            }}
+          >
+            {cart ? (
+              cart.map((prod) => {
                 return (
-                  <div key={prod.id}>
-                    <img src={prod.image} alt="" />
-                    <Typography>{prod.name}</Typography>
-                    <Typography>{prod.price}</Typography>
-                    <Box>
-                      <Button>-</Button>
-                      <Typography>1</Typography>
-                      <Button>+</Button>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                    key={prod?.id}
+                  >
+                    <Box sx={{ display: "flex" }}>
+                      <IconButton onClick={() => dispatch(removeById(prod.id))}>
+                        <DeleteForeverIcon />
+                      </IconButton>
+                      <img
+                        style={{ maxHeight: 64, maxWidth: 64 }}
+                        src={prod?.image}
+                        alt=""
+                      />
+                      <Box sx={{ p: "8px 0 0 8px" }}>
+                        <Typography fontSize={15} fontWeight={700}>
+                          {prod?.subName}
+                        </Typography>
+                        <Typography
+                          fontSize={15}
+                          fontWeight={700}
+                          sx={{ opacity: "50%" }}
+                        >
+                          $ {prod?.price}
+                        </Typography>
+                      </Box>
                     </Box>
-                  </div>
+                    <CounterContainer
+                      id={prod?.id}
+                      quantity={prod?.quantity}
+                      anchocontador={40}
+                      ancho={95}
+                      addBoton={false}
+                      onAdd={onAdd}
+                    />
+                  </Box>
                 );
               })
             ) : (
-              <Typography sx={{textAlign:"center"}}>No hay productos</Typography>
+              <Typography sx={{ textAlign: "center" }}>
+                No hay productos
+              </Typography>
             )}
           </Box>
           <Box>
-          <Box sx={{ display: "flex", justifyContent: "space-between",mb:3 }}>
-            <Typography>TOTAL</Typography>
-            <Typography fontWeight={600}>$1,000</Typography>
-          </Box>
+            <Box
+              sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}
+            >
+              <Typography>TOTAL</Typography>
+              <Typography fontWeight={600}>${totalPrecio}</Typography>
+            </Box>
             <Link to="/checkout">
               <Button
                 color={"secondary"}

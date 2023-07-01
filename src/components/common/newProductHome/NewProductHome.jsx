@@ -1,6 +1,6 @@
 import { Box, CardMedia } from "@mui/material";
-import "./NewProductHome.css";
 import { ProductDescription } from "../productDescription/ProductDescription";
+import "./NewProductHome.css";
 import img3 from "../../../assets/img/Bitmap (3).png";
 
 export const NewProductHome = ({ prod }) => {

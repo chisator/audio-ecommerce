@@ -1,11 +1,31 @@
 import { useState } from "react";
 import { Counter } from "./Counter";
 
-export const CounterContainer = ({onAdd}) => {
-    let [counter, setCounter] = useState(1)
+import { useDispatch } from "react-redux";
+
+export const CounterContainer = ({
+  onAdd,
+  addBoton,
+  ancho,
+  anchocontador,
+  id,
+  quantity,
+}) => {
+  const dispatch = useDispatch()
+  let [counter, setCounter] = useState(1);
   return (
     <div>
-      <Counter counter={counter} setCounter={setCounter} onAdd={onAdd} />
+      <Counter
+        counter={counter}
+        setCounter={setCounter}
+        onAdd={onAdd}
+        addBoton={addBoton}
+        ancho={ancho}
+        anchocontador={anchocontador}
+        id={id}
+        quantity={quantity}
+        dispatch={dispatch}
+      />
     </div>
   );
 };

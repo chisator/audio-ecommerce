@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getAllProduct } from "../services/productsServices";
+import { getAllProduct, getProductById } from "../services/productsServices";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cartSlice";
 
 export const useAllProduct = () => {
   const [products, setProducts] = useState([]);
@@ -41,3 +43,25 @@ export function useOneProduct() {
   }, []);
   return { products };
 }
+export const useProductById = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (id) {
+      let getData = async () => {
+        let data = await getProductById(id);
+        setProduct(data);
+      };
+      getData();
+    }
+  }, [id]);
+  const onAdd = (cantidad) => {
+    let data = {
+      ...product,
+      quantity: cantidad,
+    };
+    dispatch(addToCart(data));
+  };
+  return { onAdd, product };
+};
