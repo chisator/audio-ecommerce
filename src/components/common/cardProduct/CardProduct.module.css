@@ -1,0 +1,31 @@
+.ovalSmall {
+  position: absolute;
+  top: 170px;
+  left: 140px;
+  width: 472px;
+  height: 472px;
+  flex-shrink: 0;
+  border-radius: 472px;
+  border: 1px solid #ffffff54;
+}
+.ovalMedium {
+  position: absolute;
+  top: 140px;
+  left: 100px;
+  width: 542px;
+  height: 542px;
+  flex-shrink: 0;
+  border-radius: 542px;
+  border: 1px solid #ffffff54;
+}
+.ovalBig {
+  position: absolute;
+  top: -30px;
+  left: -100px;
+  width: 944px;
+  height: 944px;
+  flex-shrink: 0;
+  border-radius: 944px;
+  border: 1px solid #ffffff54;
+  
+}

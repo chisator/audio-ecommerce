@@ -25,6 +25,7 @@ export const Login = ({
   showPassword,
   handleClickShowPassword,
   handleMouseDownPassword,
+  ingresarConGoogle,
 }) => {
   return (
     <>
@@ -42,13 +43,13 @@ export const Login = ({
           borderRadius: 3,
         }}
       >
-        <Typography variant="h4" fontWeight={550}>
+        <Typography variant="h4" fontWeight={700}>
           LOGIN
         </Typography>
         <form className="form-login" action="" onSubmit={handleSubmit}>
           <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
             <TextField
-            autoComplete="username"
+              autoComplete="username"
               placeholder="ejemplo@gmail.com"
               className=""
               id="standard-basic"
@@ -123,6 +124,18 @@ export const Login = ({
             variant="contained"
           >
             continue
+          </Button>
+          <Button
+            onClick={() => ingresarConGoogle()}
+            sx={{
+              backgroundColor: "primary.second",
+              width: "50%",
+              borderRadius: 0,
+            }}
+            id="button-google"
+            variant="contained"
+          >
+            Sing with Google
           </Button>
         </form>
       </Box>

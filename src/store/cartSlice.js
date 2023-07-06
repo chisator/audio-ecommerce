@@ -55,7 +55,13 @@ export const cartSlice = createSlice({
     },
     getTotalPrice: (state) => {
       const totalPrecio = state.cart.reduce((acc, element) => {
-        return acc + element.quantity * element.price;
+        return (
+          acc +
+          (element.quantity < element.stock
+            ? element.quantity
+            : element.stock) *
+            element.price
+        );
       }, 0);
       state.totalPrecio = totalPrecio;
     },

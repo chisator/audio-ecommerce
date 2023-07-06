@@ -9,14 +9,15 @@ export const ProductDescription = ({
   onAdd,
   precio,
   posicion,
+  stock,
 }) => {
   return (
     <Box
       sx={{
         maxBlockSize: { md: 400 },
-        m:"20px 0",
+        m: "20px 0",
         display: "flex",
-        gap:2,
+        gap: 2,
         p: { xs: 1, md: "8% 7%" },
         flexDirection: "column",
         alignItems: { xs: posicion, md: "start" },
@@ -50,7 +51,7 @@ export const ProductDescription = ({
       </Typography>
       <Typography
         color={colorLetras}
-        sx={{ textAlign: { xs: posicion, md: "start" }, mt: 3,opacity:"50%" }}
+        sx={{ textAlign: { xs: posicion, md: "start" }, mt: 3, opacity: "50%" }}
       >
         {prod?.description}
       </Typography>
@@ -66,7 +67,7 @@ export const ProductDescription = ({
       ) : null}
       <Box>
         {onAdd ? (
-          <CounterContainer onAdd={onAdd} />
+          <CounterContainer onAdd={onAdd} stock={stock} />
         ) : (
           <Link to={`/productDetail/${prod?.id}`}>
             <Button

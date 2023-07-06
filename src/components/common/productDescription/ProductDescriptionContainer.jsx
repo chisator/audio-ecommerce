@@ -1,7 +1,7 @@
 import { ProductDescription } from "./ProductDescription"
 
 
-export const ProductDescriptionContainer = ({ prod, onAdd, precio, posicion }) => {
+export const ProductDescriptionContainer = ({ prod, onAdd, precio, posicion, stock }) => {
   return (
     <div>
       <ProductDescription
@@ -9,6 +9,7 @@ export const ProductDescriptionContainer = ({ prod, onAdd, precio, posicion }) =
         precio={precio}
         onAdd={onAdd}
         posicion={posicion}
+        stock={stock}
       />
     </div>
   );

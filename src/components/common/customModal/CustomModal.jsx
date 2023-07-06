@@ -73,7 +73,7 @@ export const CustomModal = ({
               overflow: "auto",
             }}
           >
-            {cart ? (
+            {!(totalPrecio == 0) ? (
               cart.map((prod) => {
                 return (
                   <Box
@@ -113,12 +113,13 @@ export const CustomModal = ({
                       ancho={95}
                       addBoton={false}
                       onAdd={onAdd}
+                      stock={prod.stock}
                     />
                   </Box>
                 );
               })
             ) : (
-              <Typography sx={{ textAlign: "center" }}>
+              <Typography sx={{ textAlign: "center", color: "primary.main" }}>
                 No hay productos
               </Typography>
             )}

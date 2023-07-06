@@ -10,13 +10,15 @@ export const CounterContainer = ({
   anchocontador,
   id,
   quantity,
+  stock,
 }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   let [counter, setCounter] = useState(1);
   return (
     <div>
       <Counter
         counter={counter}
+        stock={stock}
         setCounter={setCounter}
         onAdd={onAdd}
         addBoton={addBoton}

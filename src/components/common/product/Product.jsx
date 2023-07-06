@@ -2,7 +2,7 @@ import { Box, CardMedia} from "@mui/material";
 import { ProductDescriptionContainer } from "../productDescription/ProductDescriptionContainer";
 
 
-export const Product = ({ prod, i, onAdd, precio, posicion }) => {
+export const Product = ({ prod, i, onAdd, precio, posicion, stock }) => {
   return (
     <Box
       sx={{
@@ -42,6 +42,7 @@ export const Product = ({ prod, i, onAdd, precio, posicion }) => {
           precio={precio}
           onAdd={onAdd}
           posicion={posicion}
+          stock={stock}
         />
       </div>
     </Box>

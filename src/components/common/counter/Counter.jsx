@@ -10,7 +10,8 @@ export const Counter = ({
   anchocontador,
   id,
   quantity,
-dispatch
+  dispatch,
+  stock,
 }) => {
   return (
     <Box
@@ -34,7 +35,11 @@ dispatch
           }}
           variant="text"
           onClick={() =>
-            addBoton ? setCounter(counter - 1) : (quantity>1)? dispatch(decrementOneById(id)): dispatch(removeById(id))
+            addBoton
+              ? setCounter(counter - 1)
+              : quantity > 1
+              ? dispatch(decrementOneById(id))
+              : dispatch(removeById(id))
           }
           disabled={addBoton && counter == 1 ? true : false}
         >
@@ -47,7 +52,9 @@ dispatch
             alignItems: "center",
           }}
         >
-          {quantity ? quantity : counter}
+          {quantity 
+          ? quantity<stock ? quantity:stock
+          : counter}
         </Typography>
         <Button
           sx={{
@@ -58,6 +65,7 @@ dispatch
           onClick={() =>
             addBoton ? setCounter(counter + 1) : dispatch(incrementOneById(id))
           }
+          disabled={quantity ? quantity >= stock : counter >= stock}
         >
           +
         </Button>

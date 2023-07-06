@@ -1,4 +1,3 @@
-import { TarjetaContainer } from "../../common/tarjeta/TarjetaContainer";
 import { ButtonBack } from "../../common/buttonBack/ButtonBack";
 import { Product } from "../../common/product/Product";
 import { Box, CardMedia, Grid, Typography } from "@mui/material";
@@ -7,7 +6,7 @@ export const ProductDetail = ({ product, onAdd }) => {
   return (
     <div>
       <ButtonBack />
-      <Product prod={product} precio={true} onAdd={onAdd} posicion={"start"} />
+      <Product prod={product} stock={product.stock} precio={true} onAdd={onAdd} posicion={"start"} />
       <Box
         sx={{
           display: "flex",
@@ -45,7 +44,7 @@ export const ProductDetail = ({ product, onAdd }) => {
               lineHeight={"25px"}
               fontSize={15}
               fontWeight={500}
-              sx={{ opacity: "50%" }}
+              sx={{ opacity: "50%", whiteSpace:"pre-line"}}
             >
               {product.features}
             </Typography>
@@ -151,7 +150,7 @@ export const ProductDetail = ({ product, onAdd }) => {
           </Grid>
         </Grid>
       </Box>
-      <TarjetaContainer />
+      
     </div>
   );
 };
