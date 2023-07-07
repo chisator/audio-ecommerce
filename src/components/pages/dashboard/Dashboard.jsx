@@ -1,7 +1,5 @@
 
 
 export const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  return <button>generar</button>;
+};
