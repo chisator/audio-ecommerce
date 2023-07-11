@@ -73,7 +73,7 @@ export const useOneProduct = (id) => {
       setProducts(productByCategory); */
     };
     getData();
-  }, []);
+  }, [id]);
   return { products };
 };
 export const useProductById = () => {

@@ -4,6 +4,7 @@ import { Register } from "./Register";
 import * as Yup from "yup";
 import { useState } from "react";
 import { register } from "../../../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 export const RegisterContainer = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,9 +26,10 @@ export const RegisterContainer = () => {
     password: "",
     confirmPassword: "",
   };
+  const navigate = useNavigate();
   const onSubmit = async(data) => {
     let res = await register(data)
-    console.log(res)
+    res?navigate("/login"):alert("Email ya registrado")
   };
 
   const { handleSubmit, handleChange, handleBlur, errors, touched, values } =

@@ -7,16 +7,20 @@
   flex-shrink: 0;
   border-radius: 472px;
   border: 1px solid #ffffff54;
+  transform: scale(0.6);
+  z-index: 1;
 }
 .ovalMedium {
   position: absolute;
   top: 140px;
-  left: 100px;
+  left: 105px;
   width: 542px;
   height: 542px;
   flex-shrink: 0;
   border-radius: 542px;
   border: 1px solid #ffffff54;
+  transform: scale(0.6);
+  z-index: 1;
 }
 .ovalBig {
   position: absolute;
@@ -27,5 +31,20 @@
   flex-shrink: 0;
   border-radius: 944px;
   border: 1px solid #ffffff54;
-  
+  transform: scale(0.6);
+  z-index: 1;
 }
+@media (min-width: 600px) {
+  .ovalSmall {
+    transform: scale(0.8);
+  }
+  .ovalMedium {
+    transform: scale(0.8);
+    
+  }
+  .ovalBig {
+    transform: scale(0.9);
+   
+  }
+}
+

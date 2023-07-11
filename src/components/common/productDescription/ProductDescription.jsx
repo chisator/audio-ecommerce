@@ -10,6 +10,7 @@ export const ProductDescription = ({
   precio,
   posicion,
   stock,
+  buttonColor,
 }) => {
   return (
     <Box
@@ -72,7 +73,7 @@ export const ProductDescription = ({
           <Link to={`/productDetail/${prod?.id}`}>
             <Button
               sx={{ mt: 4, height: "48px", width: "160px" }}
-              color={"secondary"}
+              color={buttonColor}
               variant="contained"
               style={{ borderRadius: 0 }}
             >
@@ -89,5 +90,6 @@ ProductDescription.defaultProps = {
   tamañoLetra: 38,
   precio: false,
   onAdd: null,
-  posicion:"center",
+  posicion: "center",
+  buttonColor:"secondary"
 };

@@ -4,10 +4,12 @@ import { useSelector } from "react-redux";
 
 export const HeaderContainer = () => {
   const {cart} = useSelector((store) => store.cartSlice);
+  const { isLogged } = useSelector((store) => store.authSlice);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
   return (
     <Header
       handleClose={handleClose}
@@ -16,6 +18,7 @@ export const HeaderContainer = () => {
       handleOpen={handleOpen}
       open={open}
       cart={cart}
+      isLogged={isLogged}
     />
   );
 }

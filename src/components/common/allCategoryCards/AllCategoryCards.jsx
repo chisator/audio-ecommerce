@@ -8,8 +8,8 @@ export const AllCategoryCards = ({arrayCategory}) => {
         margin: "70px auto",
         padding: 0,
         display: "grid",
-        maxWidth: "1100px",
-        gap:4,
+        maxWidth: { lg: 1100,xs:"90%" },
+        gap: 4,
         gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1.5fr))",
       }}
     >

@@ -24,6 +24,7 @@ export const LoginContainer = () => {
   };
   const ingresarConGoogle = async()=>{
     let res = await loginGoogle();
+    console.log(res)
     dispatch(loginRedux(res.user));
   }
 

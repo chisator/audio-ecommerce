@@ -125,6 +125,7 @@ export const Login = ({
           >
             continue
           </Button>
+        </form>
           <Button
             onClick={() => ingresarConGoogle()}
             sx={{
@@ -137,7 +138,6 @@ export const Login = ({
           >
             Sing with Google
           </Button>
-        </form>
       </Box>
     </>
   );

@@ -1,17 +1,16 @@
 import { Box, CardMedia } from "@mui/material";
-import { ProductDescription } from "../productDescription/ProductDescription";
+
 import "./NewProductHome.css";
 import img3 from "../../../assets/img/Bitmap (3).png";
+import { ProductDescriptionContainer } from "../productDescription/ProductDescriptionContainer";
 
 export const NewProductHome = ({ prod }) => {
   return (
-    <div
-      className="newProductHome"
-    >
+    <div className="newProductHome">
       <Box
         sx={{
           padding: { lg: "0 9%" },
-          backgroundColor:{md:"primary.main"},
+          backgroundColor: { md: "primary.main" },
           maxWidth: "100%",
           height: 700,
           display: "flex",
@@ -21,7 +20,7 @@ export const NewProductHome = ({ prod }) => {
         }}
       >
         <Box sx={{ width: "60%" }}>
-          <ProductDescription
+          <ProductDescriptionContainer
             tamañoLetra={50}
             colorLetras={"primary.second"}
             prod={prod}

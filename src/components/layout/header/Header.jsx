@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import { menu } from "../../../routes/navigation";
 import { CustomModalContainer } from "../../common/customModal/CustomModalContainer";
+import { ProfileButtomContainer } from "../../common/profileButtom/ProfileButtomContainer";
 export const Header = ({
   open,
   handleClose,
@@ -21,6 +22,7 @@ export const Header = ({
   setOpenDrawer,
   openDrawer,
   cart,
+  isLogged,
 }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -82,18 +84,26 @@ export const Header = ({
                   })}
 
                   <hr className="white-line"></hr>
-                  <Box sx={{ ml: 4 }}>
-                    <Link
-                      style={{ marginBottom: "20px" }}
-                      to="/register"
-                      className="linkSign"
+                  {!isLogged ? (
+                    <Box
+                      sx={{ mr: 2 }}
+                      style={{ display: "flex", gap: "0.5rem" }}
                     >
-                      Register
-                    </Link>
-                    <Link to="/login" className="linkSign">
-                      Log In
-                    </Link>
-                  </Box>
+                      <Link to="/register" className="linkSign">
+                        Register
+                      </Link>
+                      <hr style={{ height: "30px" }} />
+                      <Link
+                        style={{ width: "45px" }}
+                        to="/login"
+                        className="linkSign"
+                      >
+                        Log In
+                      </Link>
+                    </Box>
+                  ) : (
+                    <ProfileButtomContainer />
+                  )}
                 </Box>
               </Drawer>
               <img src={img} className="logo" alt="" />
@@ -135,15 +145,23 @@ export const Header = ({
                 );
               })}
             </Grid>
-            <Box sx={{ mr: 2 }} style={{ display: "flex", gap: "0.5rem" }}>
-              <Link to="/register" className="linkSign">
-                Register
-              </Link>
-              <hr style={{ height: "30px" }} />
-              <Link style={{ width: "45px" }} to="/login" className="linkSign">
-                Log In
-              </Link>
-            </Box>
+            {!isLogged ? (
+              <Box sx={{ mr: 2 }} style={{ display: "flex", gap: "0.5rem" }}>
+                <Link to="/register" className="linkSign">
+                  Register
+                </Link>
+                <hr style={{ height: "30px" }} />
+                <Link
+                  style={{ width: "45px" }}
+                  to="/login"
+                  className="linkSign"
+                >
+                  Log In
+                </Link>
+              </Box>
+            ) : (
+              <ProfileButtomContainer />
+            )}
             <Badge badgeContent={cart.length} color="secondary">
               <ShoppingCartOutlinedIcon onClick={handleOpen} />
             </Badge>
