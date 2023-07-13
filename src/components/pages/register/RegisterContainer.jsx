@@ -3,8 +3,9 @@ import { ButtonBack } from "../../common/buttonBack/ButtonBack";
 import { Register } from "./Register";
 import * as Yup from "yup";
 import { useState } from "react";
-import { register } from "../../../firebaseConfig";
+import { db, register } from "../../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
 
 export const RegisterContainer = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,11 +26,20 @@ export const RegisterContainer = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    rol:"customer"
   };
   const navigate = useNavigate();
   const onSubmit = async(data) => {
+    console.log( data)
     let res = await register(data)
     res?navigate("/login"):alert("Email ya registrado")
+    let dataDB = {
+      email: data.email,
+      displayName: data.name,
+      rol: data.rol,
+    };
+    const userCollection =collection(db,"users")
+    addDoc(userCollection, dataDB);
   };
 
   const { handleSubmit, handleChange, handleBlur, errors, touched, values } =

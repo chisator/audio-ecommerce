@@ -12,7 +12,7 @@ import {
   doc,
 } from "firebase/firestore";
 
-export const useAllProduct = () => {
+export default function useAllProduct(){
   const [products, setProducts] = useState([]);
   const { categoryName } = useParams();
 
@@ -56,7 +56,7 @@ export const useAllProduct = () => {
     getData();
   }, [categoryName]);
   return { products, categoryName };
-};
+}
 export const useOneProduct = (id) => {
   const [products, setProducts] = useState({});
 
