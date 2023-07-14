@@ -1,11 +1,11 @@
-import { TarjetaContainer } from "../../common/tarjeta/TarjetaContainer";
-import useAllProduct from "../../../hooks/fetchProduct";
-import { AllCategoryCardsContainer } from "../../common/allCategoryCards/AllCategoryCardsContainer";
+import { Suspense, lazy } from "react";
 import { Box, Skeleton, Stack } from "@mui/material";
-import React, { Suspense } from "react";
+import { AllCategoryCardsContainer } from "../../common/allCategoryCards/AllCategoryCardsContainer";
+import { TarjetaContainer } from "../../common/tarjeta/TarjetaContainer";
 import { CategoryNavar } from "../../common/categoryNavbar/CategoryNavar";
+import useAllProduct from "../../../hooks/fetchProduct";
 
-const Category = React.lazy(() => delayForDemo(import("./Category")));
+const Category = lazy(() => import("./Category.jsx"));
 
 export const CategoryContainer = () => {
   const { products, categoryName } = useAllProduct();
@@ -14,7 +14,7 @@ export const CategoryContainer = () => {
     <>
       <CategoryNavar categoryName={categoryName} />
       <Suspense fallback={<Loading />}>
-        <Category products={products} categoryName={categoryName} />
+        <Category products={products} />
       </Suspense>
       <AllCategoryCardsContainer />
       <TarjetaContainer />

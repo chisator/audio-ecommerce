@@ -1,5 +1,5 @@
 import { ButtonBack } from "../../common/buttonBack/ButtonBack";
-import { Product } from "../../common/product/Product";
+import  Product  from "../../common/product/Product";
 import { Box, CardMedia, Grid, Typography } from "@mui/material";
 
 export const ProductDetail = ({ product, onAdd }) => {
