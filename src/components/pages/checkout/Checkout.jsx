@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   FormControl,
   FormControlLabel,
   RadioGroup,
@@ -18,19 +19,29 @@ export const Checkout = ({
   errors,
   touched,
   values,
+  cart,
+  totalPrecio,
 }) => {
   /* const [metodoPago, setMetodoPago] = useState("mercado"); */
   return (
-    <div>
+    <>
       <ButtonBack />
-      <Box sx={{ display: "flex", flexDirection: { md: "row", xs: "column" } }}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 1,
+          flexDirection: { md: "row", xs: "column" },
+          maxWidth: { md: 1000 },
+          m: "auto",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
             gap: 6,
-            m: "0px auto",
+            m: "0px auto 10px",
             p: "40px",
             width: { lg: "60%", md: "60%", xs: "90%" },
             maxWidth: "730px",
@@ -41,7 +52,7 @@ export const Checkout = ({
           <Typography variant="h4" fontWeight={700} fontSize={32}>
             CHECKOUT
           </Typography>
-          <form className="form-login" action="" onSubmit={handleSubmit}>
+          <form className="form-check" action="" onSubmit={handleSubmit}>
             <Grid container spacing={1}>
               <Typography
                 textTransform="uppercase"
@@ -283,9 +294,97 @@ export const Checkout = ({
           </form>
         </Box>
         <Box
-          sx={{ width: 350, height: 612, backgroundColor: "primary.second" }}
-        ></Box>
+          sx={{
+            width: { md: 350, xs: "90%" },
+            maxWidth: "730px",
+            height: 550,
+            backgroundColor: "primary.second",
+            p: 4,
+            m: "0 auto 10px",
+            borderRadius: 3,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box>
+            <Typography
+              fontSize={18}
+              fontWeight={700}
+              textTransform={"uppercase"}
+            >
+              summary
+            </Typography>
+          </Box>
+          <Box>
+            {cart.map((prod) => {
+              return (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                  key={prod?.id}
+                >
+                  <Box sx={{ display: "flex" }}>
+                    <img
+                      style={{ maxHeight: 64, maxWidth: 64 }}
+                      src={prod?.image}
+                      alt=""
+                    />
+                    <Box sx={{ p: "8px 0 0 8px" }}>
+                      <Typography fontSize={15} fontWeight={700}>
+                        {prod?.subName}
+                      </Typography>
+                      <Typography
+                        fontSize={15}
+                        fontWeight={700}
+                        sx={{ opacity: "50%" }}
+                      >
+                        $ {prod?.price}
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box>
+                    <Typography
+                      fontSize={15}
+                      fontWeight={700}
+                      sx={{ opacity: "50%" }}
+                    >
+                      x{prod.quantity}
+                    </Typography>
+                  </Box>
+                </Box>
+              );
+            })}
+          </Box>
+          <Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                m: "9px 0",
+              }}
+            >
+              <Typography>TOTAL</Typography>
+              <Typography color={"secondary.main"}>$ {totalPrecio}</Typography>
+            </Box>
+            <Box textAlign={"center"}>
+              <Button
+                sx={{
+                  width: { md: "100%", xs: 200 },
+                  backgroundColor: "secondary.main",
+                  color: "primary.second",
+                  "&:hover": { backgroundColor: "primary.main" },
+                }}
+              >
+                CONTINUE & PAY
+              </Button>
+            </Box>
+          </Box>
+        </Box>
       </Box>
-    </div>
+    </>
   );
 };

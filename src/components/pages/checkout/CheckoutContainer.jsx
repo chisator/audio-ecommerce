@@ -1,7 +1,9 @@
 import { useFormik } from "formik";
 import { Checkout } from "./Checkout";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
 export const CheckoutContainer = () => {
+  const { cart, totalPrecio } = useSelector((store) => store.cartSlice);
   let valoresIniciales = {
     name: "",
     email: "",
@@ -41,6 +43,8 @@ export const CheckoutContainer = () => {
       errors={errors}
       touched={touched}
       values={values}
+      cart={cart}
+      totalPrecio={totalPrecio}
     />
   );
 };

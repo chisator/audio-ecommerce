@@ -1,5 +1,5 @@
 import { Dashboard } from "./Dashboard";
-import { db } from "../../../firebaseConfig";
+/* import { db } from "../../../firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
 const generarDocumentos = () => {
   let productos = [
@@ -284,7 +284,7 @@ const generarDocumentos = () => {
     addDoc(refCollection,element);
   })
 
-};
+}; */
 export const DashboardContainer = () => {
-  return <Dashboard generarDocumentos={generarDocumentos} />;
+  return <Dashboard  />;
 };

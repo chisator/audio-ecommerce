@@ -100,8 +100,8 @@ function Loading() {
     </Stack>
   );
 }
-function delayForDemo(promise) {
+/* function delayForDemo(promise) {
   return new Promise((resolve) => {
     setTimeout(resolve, 2500);
   }).then(() => promise);
-}
+} */

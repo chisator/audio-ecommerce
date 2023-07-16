@@ -36,6 +36,8 @@ export const RegisterContainer = () => {
     let dataDB = {
       email: data.email,
       displayName: data.name,
+      displaylastName: data.lastName,
+      phone: data.phone,
       rol: data.rol,
     };
     const userCollection =collection(db,"users")
