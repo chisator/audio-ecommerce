@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react";
 import { Dashboard } from "./Dashboard";
+import { collection, getDocs,deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
+import Swal from "sweetalert2";
 /* import { db } from "../../../firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
 const generarDocumentos = () => {
@@ -286,5 +290,70 @@ const generarDocumentos = () => {
 
 }; */
 export const DashboardContainer = () => {
-  return <Dashboard  />;
+  const [products, setProducts] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [data, setData] = useState({});
+  const [changesProducts, setChangesProducts] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  useEffect(() => {
+    setChangesProducts(false);
+    let refCollection = collection(db, "products");
+
+    const getData = async () => {
+      let res = await getDocs(refCollection);
+      let productosFinales = res.docs.map((prod) => {
+        return { ...prod.data(), id: prod.id };
+      });
+
+      setProducts(productosFinales);
+    };
+
+    getData();
+  }, [changesProducts]);
+
+  const viewById = (product) => {
+    setData(product);
+    setDisabled(true);
+    setOpen(true);
+  };
+
+  const editById = (product) => {
+    setData(product);
+    setDisabled(false);
+    setOpen(true);
+  };
+  const deleteById = (product) => {
+    Swal.fire({
+      title: `Estas seguro de eliminar el ${product.name}?`,
+      text: "No podrás revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteDoc(doc(db, "products", product.id));
+        setChangesProducts(true)
+        Swal.fire("eliminado!", "El producto ha sido eliminado.", "success");
+      }
+    });
+  };
+  let props = {
+    products,
+    disabled,
+    open,
+    data,
+    viewById,
+    editById,
+    deleteById,
+    handleClose,
+    setChangesProducts,
+  };
+  return <Dashboard {...props} />;
 };

@@ -1,4 +1,6 @@
 import {
+  CardMedia,
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -6,35 +8,76 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-
-export const Dashboard = () => {
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { ModalDashboardContainer } from "../../common/modalDashboard/ModalDashboardContainer";
+export const Dashboard = ({
+  products,
+  viewById,
+  editById,
+  deleteById,
+  open,
+  handleClose,
+  disabled,
+  data,
+  setChangesProducts,
+}) => {
   return (
     <>
       <TableContainer>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Producto</TableCell>
-              <TableCell align="right">Precio</TableCell>
-              <TableCell align="right">Image</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              <TableCell>Image</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell align="right">Price</TableCell>
+              <TableCell align="right">Stock</TableCell>
+              <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row"></TableCell>
-              <TableCell align="right">a</TableCell>
-              <TableCell align="right">b</TableCell>
-              <TableCell align="right">c</TableCell>
-              <TableCell align="right">d</TableCell>
-            </TableRow>
+            {products?.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  <CardMedia
+                    sx={{ maxWidth: 100, maxHeight: 100 }}
+                    image={row.image}
+                    component="img"
+                    alt=""
+                  />
+                </TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell align="right">$ {row.price}</TableCell>
+                <TableCell align="right">{row.stock}</TableCell>
+                <TableCell align="right">
+                  <IconButton onClick={() => viewById(row)}>
+                    <VisibilityIcon />
+                  </IconButton>
+                  <IconButton onClick={() => editById(row)}>
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton onClick={() => deleteById(row)}>
+                    <DeleteForeverIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
+      {open && (
+        <ModalDashboardContainer
+          setChangesProducts={setChangesProducts}
+          open={open}
+          handleClose={handleClose}
+          data={data}
+          disabled={disabled}
+        />
+      )}
     </>
   );
 };

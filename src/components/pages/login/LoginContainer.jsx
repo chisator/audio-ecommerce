@@ -5,6 +5,7 @@ import { useState } from "react";
 import { login, loginGoogle } from "../../../firebaseConfig";
 import { loginRedux } from "../../../store/authSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 export const LoginContainer = () => {
@@ -22,8 +23,10 @@ export const LoginContainer = () => {
     let res =await login(data);
     dispatch(loginRedux(res.user));
   };
+  const navegate = useNavigate()
   const ingresarConGoogle = async()=>{
     let res = await loginGoogle();
+    res ? navegate("/") : alert("Email o Contraseña incorrecta");
     console.log(res.user);
     dispatch(loginRedux(res.user));
   }

@@ -1,7 +1,7 @@
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
-
-import "./Login.css"
+import GoogleIcon from "@mui/icons-material/Google";
+import "./Login.css";
 import {
   Box,
   Button,
@@ -77,7 +77,7 @@ export const Login = ({
               autoComplete="current-password"
               name="password"
               color="secondary"
-              placeholder="suContraseña"
+              placeholder="**************"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.password}
@@ -116,7 +116,7 @@ export const Login = ({
           <Button
             sx={{
               backgroundColor: "secondary.main",
-              width: "50%",
+              width: "70%",
               borderRadius: 0,
             }}
             id="button"
@@ -126,18 +126,31 @@ export const Login = ({
             continue
           </Button>
         </form>
+        <Box sx={{ textAlign: "center", mt: 2,display:"flex",alignItems:"center" }}>
+          <div className="lineaOR"></div>
+          <Typography sx={{m:2,opacity:0.3}}>OR</Typography>
+          <div className="lineaOR"></div>
+        </Box>
+        <Box sx={{ mt: 2, textAlign: "center" }}>
           <Button
+            className="boton-google"
             onClick={() => ingresarConGoogle()}
             sx={{
-              backgroundColor: "primary.second",
-              width: "50%",
+              backgroundColor: "primary.blanco",
+              color: "primary.main",
+              width: "70%",
               borderRadius: 0,
+              "&:hover": { backgroundColor: "#4285f4", color: "white" },
             }}
             id="button-google"
             variant="contained"
           >
-            Sing with Google
+            <GoogleIcon
+              sx={{ mr: 1, "&:hover": { color: "white", transition: "0ms" } }}
+            />
+            Login with Google
           </Button>
+        </Box>
       </Box>
     </>
   );

@@ -30,7 +30,7 @@ export const RegisterContainer = () => {
   };
   const navigate = useNavigate();
   const onSubmit = async(data) => {
-    console.log( data)
+    console.log(data)
     let res = await register(data)
     res?navigate("/login"):alert("Email ya registrado")
     let dataDB = {
