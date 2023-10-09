@@ -16,7 +16,7 @@ export const db = getFirestore(app);
 const auth = getAuth(app);
 
 //login
-export const login = async ({ email, password }) => {
+export const onSingIn = async ({ email, password }) => {
     try {
         let res = await signInWithEmailAndPassword(auth, email, password);
         return res
@@ -27,14 +27,13 @@ export const login = async ({ email, password }) => {
 };
 //login Google
 let googleProvider = new GoogleAuthProvider()
-export const loginGoogle = async () => {
-    try {
-        let res = await signInWithPopup(auth, googleProvider);
-        return res
-        
-    } catch (error) {
-        console.log(error)
-    }
+export const loginWithGoogle = async () => {
+  try {
+    let res = await signInWithPopup(auth, googleProvider);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
 };
 //register
 export const register = async ({ email, password }) => {

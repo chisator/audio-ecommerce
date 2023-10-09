@@ -2,10 +2,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Login } from "./Login";
 import { useState } from "react";
-import { login, loginGoogle } from "../../../firebaseConfig";
-import { loginRedux } from "../../../store/authSlice";
+
+
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
+import { login, loginGoogle } from "../../../store/authThunk";
 
 
 export const LoginContainer = () => {
@@ -19,17 +20,11 @@ export const LoginContainer = () => {
     password: "",
     email: "",
   };
-  const onSubmit = async(data) => {
-    let res =await login(data);
-    dispatch(loginRedux(res.user));
-  };
-  const navegate = useNavigate()
-  const ingresarConGoogle = async()=>{
-    let res = await loginGoogle();
-    res ? navegate("/") : alert("Email o Contraseña incorrecta");
-    console.log(res.user);
-    dispatch(loginRedux(res.user));
+  const onSubmit = (data)=>{
+    dispatch(login(data))
   }
+  
+   const ingresarConGoogle = ()=>dispatch(loginGoogle())
 
   const { handleSubmit, handleChange, handleBlur, errors, touched, values } =
     useFormik({

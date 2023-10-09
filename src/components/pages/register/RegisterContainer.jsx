@@ -31,8 +31,6 @@ export const RegisterContainer = () => {
   const navigate = useNavigate();
   const onSubmit = async(data) => {
     console.log(data)
-    let res = await register(data)
-    res?navigate("/login"):alert("Email ya registrado")
     let dataDB = {
       email: data.email,
       displayName: data.name,
@@ -40,8 +38,16 @@ export const RegisterContainer = () => {
       phone: data.phone,
       rol: data.rol,
     };
+    let res = await register(data)
     const userCollection =collection(db,"users")
-    addDoc(userCollection, dataDB);
+    if(res){
+      navigate("/login")
+      addDoc(userCollection, dataDB)
+    }else{
+      alert("Email ya registrado")
+
+    }
+    
   };
 
   const { handleSubmit, handleChange, handleBlur, errors, touched, values } =
